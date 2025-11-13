@@ -1,0 +1,14 @@
+{
+    "name": "Coding Agent Practice DevContainer",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "go",
+    "workspaceFolder": "/home/dev/backend",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries", // タイポチェック
+                "golang.go" // Go言語の拡張機能
+            ]
+        }
+    }
+}

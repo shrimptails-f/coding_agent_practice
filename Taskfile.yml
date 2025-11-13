@@ -1,0 +1,60 @@
+version: '3'
+env:
+  MIGRATION_ROOT: "tools/migrations"
+  SEED_ROOT: "tools/seeder"
+
+tasks:
+  run:
+    desc: "サンプルAPIを起動します。"
+    cmds:
+      - go run ./cmd/app
+
+  migration-drop:
+    desc: "develop schema のテーブルを削除する。"
+    cmds:
+      - go run {{.MIGRATION_ROOT}}/main.go dev drop
+
+  migration-create:
+    desc: "develop schema のテーブル作成する。"
+    cmds:
+      - go run {{.MIGRATION_ROOT}}/main.go dev create
+
+  migration-test-drop:
+    desc: "test schema のテーブルを削除する。"
+    cmds:
+      - go run {{.MIGRATION_ROOT}}/main.go test drop
+
+  migration-test-create:
+    desc: "test schema のテーブルを作成する。"
+    cmds:
+      - go run {{.MIGRATION_ROOT}}/main.go test create
+
+  migration-fresh:
+    desc: "develop schema のテーブルを削除し作成する。"
+    cmds:
+      - task: migration-drop
+      - task: migration-create
+
+  migration-fresh-test:
+    desc: "test schema のテーブルを削除し作成する。"
+    cmds:
+      - task: migration-test-drop
+      - task: migration-test-create
+
+  seed-dev:
+    desc: "develop schema のテーブルにデータを投入する。"
+    cmds:
+      - go run {{.SEED_ROOT}}/main.go dev
+
+  test:
+    desc: "ユニットテストを実行します。"
+    cmds:
+      - task: migration-fresh-test
+      - go test -cover -coverprofile=coverage.out ./internal/...
+      - go tool cover -html=coverage.out -o coverage.html
+      - rm coverage.out
+
+  codex:
+    desc: "codexに権限をあたえて、コマンド確認させずに実行します。DevContainer(ガードレール付環境)内でのみ実行してください。"
+    cmds:
+      - codex --dangerously-bypass-approvals-and-sandbox

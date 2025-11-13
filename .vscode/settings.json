@@ -1,0 +1,30 @@
+{
+    "gopls": {
+        "build.buildFlags": [
+            "-tags=integration,unit,test"
+        ]
+    },
+    "cSpell.ignoreWords": [
+        "coverprofile",
+        "gonic",
+        "gorm",
+        "samplese",
+        "usecase",
+        "t_wada",
+        "gosimports",
+        "myapp",
+        "gcflags",
+        "tmpl",
+        "multiclient",
+        "initdb",
+        "honnef",
+        "staticcheck",
+        "gomodifytags",
+        "fatih",
+        "rinchsan",
+        "gopls",
+        "localedef",
+        "dpkg",
+        "NOPASSWD",
+    ]
+}

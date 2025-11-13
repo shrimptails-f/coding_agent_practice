@@ -1,0 +1,26 @@
+.env
+
+# air(ホットリロード)で勝手に更新されるので除外
+/tmp/*
+__debug_bin*
+
+# ビルドファイル
+main
+tmp
+.docker
+
+#AIエージェント用の課題メモディレクトリ
+tasks
+.claude-local
+
+# 多分コンテナ作成時に勝手に作成されるキャッシュなので除外
+.attach_pid*
+
+# GoLand用のリモートコンテナ作成時勝手に作成されるので削除。
+.idea
+ide
+
+# カバレッジ
+coverage.out
+coverage.html
+
